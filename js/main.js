@@ -1,15 +1,12 @@
 (() => {
-  const $fetchAsync = document.getElementById("fetch-async"),
+  const $axios = document.getElementById("axios"),
     $fragment = document.createDocumentFragment();
 
-  async function getData() {
-    try {
-      let res = await fetch("https://jsonplaceholder.typicode.com/users"),
-        json = await res.json();
+  axios
 
-      if (!res.ok) {
-        throw { status: res.status, statusText: res.statusText };
-      }
+    .get("https://jsonplaceholder.typicode.com/users")
+    .then((res) => {
+      let json = res.data;
 
       json.forEach((el) => {
         const $li = document.createElement("li");
@@ -17,17 +14,13 @@
         $fragment.appendChild($li);
       });
 
-      $fetchAsync.appendChild($fragment);
-    } catch (err) {
-      let message = err.statusText || "Ocurrio un error";
-      $fetchAsync.innerHTML = `Error ${err.status}:${message}`;
-    }
-  }
-
-  getData();
-})();
-
-(() => {
-  const $axios = document.getElementById("axios"),
-    $fragment = document.createDocumentFragment();
+      $axios.appendChild($fragment);
+    })
+    .catch((err) => {
+      let message = err.response.statusText || "Ocurrió un error";
+      $axios.innerHTML = `Error ${err.response.status}: ${message}`;
+    })
+    .finally(() => {
+      //console.log("Esto se ejecutará independientemente del resultado Axios");
+    });
 })();
