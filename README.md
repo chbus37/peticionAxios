@@ -1,6 +1,6 @@
 # Peticion a API falsa
 
-![Peticion Axios](![PeticionAxios](https://github.com/user-attachments/assets/735a9e77-c489-46a9-abf2-8c43f341f3f7) 
+![Peticion Axios](https://github.com/user-attachments/assets/735a9e77-c489-46a9-abf2-8c43f341f3f7) 
 
 ## Descripción
 
